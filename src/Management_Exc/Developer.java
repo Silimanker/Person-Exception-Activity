@@ -1,7 +1,7 @@
 package Management_Exc;
 
 public class Developer extends Employee {
-    private Manager projectManager;
+    private Manager projectManager=null;
 
     public Developer(String name, int age, double salary) {
         super(name, age, salary);
@@ -17,8 +17,11 @@ public class Developer extends Employee {
      * @param projectManager to be added as project manager
      * @throws IllegalStateException when this developer already has a project manager
      */
-    protected void setProjectManager(Manager projectManager) throws IllegalStateException{
-
+    protected void setProjectManager(Manager projectManager){
+        if(getProjectManager()==null)
+            this.projectManager=projectManager;
+        else
+            throw new IllegalStateException(getName() + " already has a manager: " + getProjectManager().getName());
     }
 
     public void removePM() {
